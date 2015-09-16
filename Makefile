@@ -54,7 +54,7 @@ PROJECT_MAIN=main.c
 # TARGET - the name you want your target to have (bin/release/[whatgoeshere])
 TARGET=main
 # TEST_TARGET - the name you want your tests to have (probably test)
-TEST_TARGET=test
+TEST_TARGET=
 # STATIC_LIBS - path to any static libs you need.  you may need to make a rule
 # to generate them from subprojects.  Leave this blank if you don't have any.
 STATIC_LIBS=
@@ -112,7 +112,7 @@ OBJECT_MAIN=$(OBJECT_DIR)/$(CFG)/$(SOURCE_DIR)/$(patsubst %.c,%.o,$(PROJECT_MAIN
 SOURCES=$(shell find $(SOURCE_DIR) -type f -name "*.c")
 OBJECTS=$(patsubst $(SOURCE_DIR)/%.c,$(OBJECT_DIR)/$(CFG)/$(SOURCE_DIR)/%.o,$(SOURCES))
 
-TEST_SOURCES=$(shell find $(TEST_DIR) -type f -name "*.c")
+TEST_SOURCES=$(shell find $(TEST_DIR) -type f -name "*.c" 2> /dev/null)
 TEST_OBJECTS=$(patsubst $(TEST_DIR)/%.c,$(OBJECT_DIR)/$(CFG)/$(TEST_DIR)/%.o,$(TEST_SOURCES))
 
 DEPENDENCIES  = $(patsubst $(SOURCE_DIR)/%.c,$(DEPENDENCY_DIR)/$(SOURCE_DIR)/%.d,$(SOURCES))
