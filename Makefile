@@ -46,20 +46,20 @@
 
 # --- CONFIGURATION: Definitely change this stuff!
 # PROJECT_NAME - not actually used.  but what's your project's name?
-PROJECT_NAME=
+PROJECT_NAME="You should change this"
 # PROJECT_TYPE - staticlib, dynamiclib, executable
-PROJECT_TYPE=
+PROJECT_TYPE=executable
 # PROJECT_MAIN - filename within your source directory that contains main()
-PROJECT_MAIN=
+PROJECT_MAIN=main.c
 # TARGET - the name you want your target to have (bin/release/[whatgoeshere])
-TARGET=
+TARGET=main
 # TEST_TARGET - the name you want your tests to have (probably test)
-TEST_TARGET=
+TEST_TARGET=test
 # STATIC_LIBS - path to any static libs you need.  you may need to make a rule
-# to generate them from subprojects.
+# to generate them from subprojects.  Leave this blank if you don't have any.
 STATIC_LIBS=
 # EXTRA_INCLUDES - folders that should also be include directories (say, for
-# static libs?)
+# static libs?).  You can leave this blank if you don't have any.
 EXTRA_INCLUDES=
 
 # --- DIRECTORY STRUCTURE: This structure is highly recommended, but you can
@@ -167,7 +167,7 @@ ifeq ($(PROJECT_TYPE),executable)
 	$(CC) $(LFLAGS) $^ -o $@
 endif
 
-# RULE TO BULID YOUR TEST TARGET HERE: (it's assumed that it's an executable)
+# RULE TO BUILD YOUR TEST TARGET HERE: (it's assumed that it's an executable)
 $(BINARY_DIR)/$(CFG)/$(TEST_TARGET): $(filter-out $(OBJECT_MAIN),$(OBJECTS)) $(TEST_OBJECTS) $(STATIC_LIBS)
 	$(DIR_GUARD)
 	$(CC) $(LFLAGS) $^ -o $@
